@@ -14,8 +14,14 @@ app.use(cors());
 app.use(express.json());
 
 app.get('/', (req, res) => {
-    res.send("1:" + req.socket.remoteAddress + "\n2:" + req.headers['x-real-ip'] + "\n3:" + req.headers['x-forwarded-for'] + "\n4(cloudfare):" + req.headers['cf-connecting-ip']);
-    res.send(`Public IP=> ${req.ip}`);
+    res.send(`
+        <h3>1: ${req.socket.remoteAddress}</h3>
+        <h3>2: ${req.headers['x-real-ip']}</h3>
+        <h3>3: ${req.headers['x-forwarded-for']}</h3>
+        <h3>4(cloudfare): ${req.headers['cf-connecting-ip']}</h3>
+        <h3>Public IP=> ${req.ip}</h3>
+    `);
+    
 });
 
 app.listen(port, () => {
