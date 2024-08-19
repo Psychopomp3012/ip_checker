@@ -16,7 +16,9 @@ app.use(express.json());
 
 app.get('/', async (req, res) => {
     // http://ip-api.com/json/24.48.0.1
-    const ip = req.headers['cf-connecting-ip'] || req.socket.remoteAddress || req.headers['x-real-ip'] || req.headers['x-forwarded-for']
+    const ip = req.headers['cf-connecting-ip'] || req.headers['x-real-ip'] || req.socket.remoteAddress || req.headers['x-forwarded-for']
+    console.log(ip);
+    
     const response = await axios.get(`http://ip-api.com/json/${ip}`);
     res.send(`
         <h3>1: ${req.socket.remoteAddress}</h3>
